@@ -25,7 +25,7 @@ public class BiomeChunkManager extends WorldChunkManager {
     private Field getPrivateField(String string) {
         Field f;
         try {
-            f = this.inner.getClass().getField(string);
+            f = this.inner.getClass().getDeclaredField("f");
             f.setAccessible(true);
             return f;
         } catch (SecurityException e) {
