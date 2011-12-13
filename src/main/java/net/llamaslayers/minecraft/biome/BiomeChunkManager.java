@@ -3,6 +3,7 @@ package net.llamaslayers.minecraft.biome;
 import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Logger;
 
 import net.minecraft.server.BiomeBase;
 import net.minecraft.server.BiomeCache;
@@ -19,13 +20,17 @@ public class BiomeChunkManager extends WorldChunkManager {
         this.world = world;
         this.inner = inner;
         
+//        for(Field f : WorldChunkManager.class.getDeclaredFields()) {
+//            Logger.getLogger("Minecraft").info("FIELD: "+f.toGenericString());
+//        }
+        
         this._f = getPrivateField("f");
     }
     
     private Field getPrivateField(String string) {
         Field f;
         try {
-            f = this.inner.getClass().getDeclaredField("f");
+            f = WorldChunkManager.class.getDeclaredField("f");
             f.setAccessible(true);
             return f;
         } catch (SecurityException e) {
