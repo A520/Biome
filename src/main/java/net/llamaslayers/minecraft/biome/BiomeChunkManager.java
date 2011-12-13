@@ -84,18 +84,18 @@ public class BiomeChunkManager extends WorldChunkManager {
     
     public float[] getWetness(float[] buffer, int x, int z, int rx, int rz) {
         buffer=inner.getWetness(buffer, x, z, rx, rz);
-        /*
+        
         int i = 0;
         for (int j = 0; j < rx; ++j) {
             for (int k = 0; k < rz; ++k) {
                 BiomeBase userDefined = BiomePlugin.getBiomeBaseForLocation(world.getWorld().getName(), (x + j), (z + k));
                 if (userDefined != null) {
-                    buffer[i++] = userDefined.w;
+                    buffer[i++] = userDefined.z;
                     continue;
                 }
             }
         }
-        */
+        
         return buffer;
     }
     
@@ -112,9 +112,21 @@ public class BiomeChunkManager extends WorldChunkManager {
         return this.a;
     }
     
-    public float[] getTemperatures(float[] afloat, int i, int j, int k, int l) {
-        afloat=inner.getTemperatures(afloat, i,j,k,l);
-        return afloat;
+    public float[] getTemperatures(float[] buffer, int x, int z, int rx, int rz) {
+        buffer=inner.getTemperatures(buffer, x,z,rx,rz);
+        
+        int i = 0;
+        for (int j = 0; j < rx; ++j) {
+            for (int k = 0; k < rz; ++k) {
+                BiomeBase userDefined = BiomePlugin.getBiomeBaseForLocation(world.getWorld().getName(), (x + j), (z + k));
+                if (userDefined != null) {
+                    buffer[i++] = userDefined.y;
+                    continue;
+                }
+            }
+        }
+        
+        return buffer;
     }
     
     public BiomeBase[] getBiomes(BiomeBase[] abiomebase, int i, int j, int k,
