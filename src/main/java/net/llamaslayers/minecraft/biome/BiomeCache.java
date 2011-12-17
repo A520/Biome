@@ -30,7 +30,7 @@ public class BiomeCache {
             if (chunk == null) {
                 chunk = createChunk(x, z);
             }
-            chunks.put(chunk);
+            chunks.put(x,z,chunk);
             return chunk;
         }
         return chunks.get(x, z);
@@ -50,7 +50,7 @@ public class BiomeCache {
     public void prune() {
         for(ChunkBiome chunk : (ArrayList<ChunkBiome>)chunks.values().clone()) {
             if(chunk.getSecondsOld()>10) {
-                chunks.remove(chunk.key);
+                chunks.remove(chunk.getX(),chunk.getZ());
             }
         }
     }

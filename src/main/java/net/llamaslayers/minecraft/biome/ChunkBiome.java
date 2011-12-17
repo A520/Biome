@@ -7,17 +7,15 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import org.bukkit.block.Biome;
-import org.bukkit.craftbukkit.util.EntryBase;
 import org.bukkit.craftbukkit.util.LongHash;
 
-public class ChunkBiome extends EntryBase {
+public class ChunkBiome {
     public long key;
     private byte[] biomes;
     private long millis;
     private boolean dirty = false;;
     
     public ChunkBiome(int x, int z, byte[] biomes) {
-        super(LongHash.toLong(x, z));
         this.biomes = biomes;
         this.millis = System.currentTimeMillis();
     }
