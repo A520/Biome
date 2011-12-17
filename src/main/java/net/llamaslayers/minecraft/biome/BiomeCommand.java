@@ -1,12 +1,9 @@
 package net.llamaslayers.minecraft.biome;
 
-import net.minecraft.server.World;
-
 import org.bukkit.block.Biome;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.craftbukkit.CraftWorld;
 import org.bukkit.entity.Player;
 
 public class BiomeCommand implements CommandExecutor {
