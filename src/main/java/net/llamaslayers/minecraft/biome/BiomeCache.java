@@ -14,7 +14,7 @@ import org.bukkit.craftbukkit.util.LongHashtable;
  * 
  */
 public class BiomeCache {
-    static final byte NOT_SET = -1;
+    public static final byte NOT_SET = -1;
     LongHashtable<ChunkBiome> chunks = new LongHashtable<ChunkBiome>();
     private BiomePlugin plugin;
     private World world;

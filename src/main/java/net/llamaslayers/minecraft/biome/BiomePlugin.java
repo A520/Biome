@@ -119,8 +119,6 @@ public class BiomePlugin extends JavaPlugin {
     @SuppressWarnings("unchecked")
     public static Biome getBiomeForLocation(String world, int x, int z) {
         Biome cached = biomeCache.get(world).getChunk(x >> 4, z >> 4).getBiome(x & 15, z & 15);
-        if(cached==null)
-            return instance.getServer().getWorld(world).getBiome(x, z);
         return cached;
     }
     
