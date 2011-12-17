@@ -60,6 +60,7 @@ public class BiomeCache {
     }
 
     public void save() {
+        getDataFolder().mkdirs();
         for(ChunkBiome chunk : (ArrayList<ChunkBiome>)chunks.values().clone()) {
             if(chunk.isDirty()) {
                 chunk.save(getDataFolder());
