@@ -99,7 +99,8 @@ public class BiomeCommand implements CommandExecutor {
             } catch (IllegalArgumentException ex) {
                 sender.sendMessage("Unknown biome.");
             } catch (Exception ex) {
-                sender.sendMessage("You have not defined a selection in WorldEdit.");
+                sender.sendMessage(ex.toString());
+                ex.printStackTrace();
             }
             return true;
         } else if (args[0].equals("clear-selection")) {
