@@ -135,8 +135,9 @@ public class BiomePlugin extends JavaPlugin {
         Biome cached = biomeCache.get(world).getChunk(x >> 4, z >> 4).getBiome(x & 15, z & 15);
         if (cached == null)
             cached = biomeCache.get(world).getDefaultBiome();
-        if (cached == null)
-            return instance.getServer().getWorld(world).getBiome(x, z);
+        // Causes infinite loop
+        // if (cached == null)
+        //     return instance.getServer().getWorld(world).getBiome(x, z);
         return cached;
     }
     
