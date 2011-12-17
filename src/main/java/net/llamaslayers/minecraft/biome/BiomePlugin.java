@@ -56,8 +56,8 @@ public class BiomePlugin extends JavaPlugin {
         
         getServer().getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
             public void run() {
-                for (World w : getServer().getWorlds()) {
-                    biomeCache.get(w.getName()).prune();
+                for (String w : biomeCache.keySet()) {
+                    biomeCache.get(w).prune();
                 }
             }
         }, 100, 100);
