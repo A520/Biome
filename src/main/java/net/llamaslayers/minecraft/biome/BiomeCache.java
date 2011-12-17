@@ -6,6 +6,7 @@ import java.util.Arrays;
 
 import org.bukkit.World;
 import org.bukkit.craftbukkit.util.LongHashtable;
+import org.bukkit.craftbukkit.CraftWorld;
 
 /**
  * Loosely based off of Notch's system, but with marginally better speed and a system to serialize to disk.
@@ -59,11 +60,13 @@ public class BiomeCache {
         chunks.remove(x, z);
     }
 
+    @SuppressWarnings("unchecked")
     public void save() {
         getDataFolder().mkdirs();
         for(ChunkBiome chunk : (ArrayList<ChunkBiome>)chunks.values().clone()) {
             if(chunk.isDirty()) {
                 chunk.save(getDataFolder());
+                ((CraftWorld)world).getHandle().getWorldChunkManager().clearCacheForChunk(chunk.getX(), chunk.getZ());
             }
         }
     }
