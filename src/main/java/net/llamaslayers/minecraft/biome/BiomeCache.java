@@ -37,7 +37,7 @@ public class BiomeCache {
     }
     
     private File getDataFolder() {
-        return new File(plugin.getDataFolder(), "data" + File.pathSeparator + world.getName());
+        return new File(plugin.getDataFolder().getAbsolutePath()+File.separator+"data" + File.separator + world.getName());
     }
     
     private ChunkBiome createChunk(int x, int z) {
