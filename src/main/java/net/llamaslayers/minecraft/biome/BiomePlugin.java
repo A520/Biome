@@ -121,6 +121,9 @@ public class BiomePlugin extends JavaPlugin {
     private static void save() {
         instance.getDataFolder().mkdirs();
         for (World w : instance.getServer().getWorlds()) {
+            if(!biomeCache.containsKey(w.getName())) {
+                biomeCache.put(w.getName(), new BiomeCache(instance,w));
+            }
             biomeCache.get(w.getName()).save();
         }
     }
