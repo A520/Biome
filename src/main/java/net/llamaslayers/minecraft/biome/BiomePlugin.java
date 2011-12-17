@@ -74,6 +74,9 @@ public class BiomePlugin extends JavaPlugin {
     
     public static void setBiomeForChunk(final String world, final int x,
             final int z, final Biome biome) {
+        if(!biomeCache.containsKey(world)) {
+            biomeCache.put(world, new BiomeCache(instance,instance.getServer().getWorld(world)));
+        }
         byte[] b = new byte[256];
         Arrays.fill(b, 0, 255, (byte) biome.ordinal());
         biomeCache.get(world).getChunk(x, z).setBiomes(b);
@@ -81,12 +84,18 @@ public class BiomePlugin extends JavaPlugin {
     }
     
     public static void clearBiomeForChunk(String world, int x, int z) {
+        if(!biomeCache.containsKey(world)) {
+            biomeCache.put(world, new BiomeCache(instance,instance.getServer().getWorld(world)));
+        }
         biomeCache.get(world).clearChunk(x, z);
         save();
     }
     
     public static void setBiomeForRegion(final String world,
             final Region region, final Biome biome) {
+        if(!biomeCache.containsKey(world)) {
+            biomeCache.put(world, new BiomeCache(instance,instance.getServer().getWorld(world)));
+        }
         Iterator<BlockVector> it = region.iterator();
         int lasty = -1;
         while (it.hasNext()) {
@@ -118,6 +127,9 @@ public class BiomePlugin extends JavaPlugin {
     
     @SuppressWarnings("unchecked")
     public static Biome getBiomeForLocation(String world, int x, int z) {
+        if(!biomeCache.containsKey(world)) {
+            biomeCache.put(world, new BiomeCache(instance,instance.getServer().getWorld(world)));
+        }
         Biome cached = biomeCache.get(world).getChunk(x >> 4, z >> 4).getBiome(x & 15, z & 15);
         return cached;
     }
