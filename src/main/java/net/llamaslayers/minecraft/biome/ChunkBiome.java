@@ -13,7 +13,15 @@ public class ChunkBiome {
     public long key;
     private byte[] biomes;
     private long millis;
-    private boolean dirty = false;;
+    private boolean dirty = false;
+    public static Biome[] biomeByID;
+    
+    static {
+        biomeByID=new Biome[Biome.values().length];
+        for (Biome biome : Biome.values()) {
+            biomeByID[biome.ordinal()] = biome;
+        }
+    }
     
     public ChunkBiome(int x, int z, byte[] biomes) {
         this.biomes = biomes;
@@ -41,7 +49,7 @@ public class ChunkBiome {
         int idx = biomes[getIndex(x, z)];
         if (idx == BiomeCache.NOT_SET)
             return null;
-        return Biome.values()[idx];
+        return biomeByID[idx];
     }
     
     public void setBiome(int x, int z, Biome b) {

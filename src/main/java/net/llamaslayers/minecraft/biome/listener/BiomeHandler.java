@@ -36,8 +36,7 @@ public class BiomeHandler extends WorldListener {
         }
     }
     
-    public void onBiomeGenerate(BiomesInChunkEvent event) {
-        
+    public void onBiomeGenerate(BiomesInChunkEvent event) {        
         for (int x = event.getX(); x < event.getX() + event.getRangeX(); x++) {
             for (int z = event.getZ(); z < event.getZ() + event.getRangeZ(); z++) {
                 Biome cached = BiomePlugin.getBiomeForLocation(event.getWorld().getName(), x, z);
